@@ -7,88 +7,58 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 20px;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 18px;
             color: #333;
         }
-
-        h1 {
-            font-size: 2em;
-            margin-bottom: 20px;
-            color: #4a90e2;
+        .link {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #333;
         }
-
         button {
-            background-color: #4a90e2;
-            color: white;
-            border: none;
             padding: 10px 20px;
-            font-size: 1em;
-            border-radius: 5px;
+            font-size: 16px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
-            margin-top: 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
         }
-
         button:hover {
-            background-color: #357ABD;
-        }
-
-        output {
-            display: block;
-            margin-top: 20px;
-            font-size: 1.2em;
-            padding: 10px;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            width: 100%;
-            max-width: 600px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        #visitLink {
-            display: none;
-            text-decoration: none;
-            color: white;
-            background-color: #28a745;
-            padding: 10px 20px;
-            border-radius: 5px;
-            margin-top: 10px;
-            transition: background-color 0.3s ease;
-        }
-
-        #visitLink:hover {
-            background-color: #218838;
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-    <h1>Delta Key Link</h1>
-    <button onclick="generateLink()">Generate Delta Key Link</button>
-    <output id="outputLink"></output>
-    <a id="visitLink" href="#" target="_blank">Go to Link</a>
+    <div class="container">
+        <h1>Refresh/Click generate button to make new link</h1>
+        <button onclick="generateLink()">Generate Link</button>
+        <div class="link" id="link"></div>
+    </div>
 
     <script>
-        function generateRandomNumber() {
-            return Math.floor(1000000000 + Math.random() * 9000000000);
+        function generateLink() {
+            const randomNumber = Math.floor(Math.random() * 10000000000);
+            const link = `https://gateway.platoboost.com/a/8?id=${randomNumber}`;
+            document.getElementById('link').innerHTML = `<a href="${link}" target="_blank">${link}</a>`;
         }
 
-        function generateLink() {
-            let randomNumber = generateRandomNumber();
-            let link = `https://gateway.platoboost.com/a/8?id=${randomNumber}`;
-            document.getElementById('outputLink').textContent = link;
-            let visitLink = document.getElementById('visitLink');
-            visitLink.href = link;
-            visitLink.style.display = 'inline-block';
-        }
+        generateLink();
     </script>
 </body>
 </html>
